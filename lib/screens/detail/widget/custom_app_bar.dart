@@ -12,14 +12,15 @@ class CostumAppBar extends StatelessWidget {
           Column(
             children: [
               Container(
+                width:MediaQuery.of(context).size.width,
                 height: 250,
                 child: ClipRRect(
                   borderRadius: BorderRadius.only(
                      bottomRight: Radius.circular(0.0),
                      bottomLeft: Radius.circular(0.0),
                 ),
-                  clipBehavior: Clip.hardEdge,
-                  child: Image.asset('assets/images/ana_ekran.png',fit: BoxFit.fitHeight,),
+                  clipBehavior: Clip.antiAlias,
+                  child: Image.asset('assets/images/ana_ekran.png',fit: BoxFit.fitWidth ,),
                 ),
               )
             ],

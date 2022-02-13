@@ -14,6 +14,7 @@ class SettingCustomBar extends StatelessWidget {
           Column(
             children: [
               Container(
+                width:MediaQuery.of(context).size.width,
                 height: 250,
                 child: ClipRRect(
                   borderRadius: BorderRadius.only(
@@ -21,7 +22,7 @@ class SettingCustomBar extends StatelessWidget {
                     bottomLeft: Radius.circular(0.0),
                   ),
                   clipBehavior: Clip.hardEdge,
-                  child: Image.asset('assets/images/ana_ekran.png',fit: BoxFit.fitHeight,),
+                  child: Image.asset('assets/images/ana_ekran.png',fit: BoxFit.fitWidth,),
                 ),
               )
             ],
