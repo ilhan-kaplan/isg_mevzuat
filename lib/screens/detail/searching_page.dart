@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:isg_mevzuat/screens/detail/result_page.dart';
 import 'package:isg_mevzuat/screens/detail/widget/regulation_title_list.dart';
 
 import '../../constants/colors.dart';
-import 'first_page.dart';
 import 'setting_page.dart';
 
 class SearchingPage extends StatefulWidget {
@@ -16,6 +16,7 @@ class SearchingPage extends StatefulWidget {
 
 class _SearchingPageState extends State<SearchingPage> {
   String dropdownvalue = 'İSG Mevzuatı';
+  String kelime = '';
   int sayac = 0;
 
   // List of items in our dropdown menu
@@ -49,7 +50,7 @@ class _SearchingPageState extends State<SearchingPage> {
             sayac++;
           }
           break;
-        case "yangin":
+        case "bykhy":
           {
             dropdownvalue = 'Binaların Yangından K.H.Y.';
             sayac++;
@@ -66,110 +67,116 @@ class _SearchingPageState extends State<SearchingPage> {
 
     return Scaffold(
       backgroundColor: cPrimary,
-      body: Column(
-        children: [
-          Container(
-            child: Stack(
-              children: [
-                Column(
-                  children: [
-                    Container(
-                      width: MediaQuery.of(context).size.width,
-                      height: 250,
-                      child: ClipRRect(
-                        borderRadius: BorderRadius.only(
-                          bottomRight: Radius.circular(0.0),
-                          bottomLeft: Radius.circular(0.0),
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            Container(
+              child: Stack(
+                children: [
+                  Column(
+                    children: [
+                      Container(
+                        width: MediaQuery.of(context).size.width,
+                        height: 250,
+                        child: ClipRRect(
+                          borderRadius: BorderRadius.only(
+                            bottomRight: Radius.circular(0.0),
+                            bottomLeft: Radius.circular(0.0),
+                          ),
+                          clipBehavior: Clip.hardEdge,
+                          child: Image.asset(
+                            'assets/images/ana_ekran.png',
+                            fit: BoxFit.fitWidth,
+                          ),
                         ),
-                        clipBehavior: Clip.hardEdge,
-                        child: Image.asset(
-                          'assets/images/ana_ekran.png',
-                          fit: BoxFit.fitWidth,
-                        ),
+                      )
+                    ],
+                  ),
+                  Positioned(
+                    top: 30,
+                    right: 10,
+                    child: IconButton(
+                      icon: const Icon(
+                        Icons.settings,
+                        size: 24,
+                        color: cBackground,
                       ),
-                    )
-                  ],
-                ),
-                Positioned(
-                  top: 30,
-                  right: 10,
-                  child: IconButton(
-                    icon: const Icon(
-                      Icons.settings,
-                      size: 24,
-                      color: cBackground,
-                    ),
-                    onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                            builder: (BuildContext context) => SettingPage()),
-                      );
-                    },
-                  ),
-                ),
-                Positioned(
-                  top: 30,
-                  left: 10,
-                  child: IconButton(
-                    icon: Icon(
-                      Icons.arrow_back_ios,
-                      size: 22,
-                      color: cBackground,
-                    ),
-                    onPressed: () {
-                      Navigator.pop(context);
-                      //Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => FirstPage()),);
-                    },
-                  ),
-                ),
-                Padding(
-                  padding:
-                      const EdgeInsets.only(left: 16.0, right: 16, top: 16),
-                  child: Container(
-                    margin: new EdgeInsets.only(top: 60),
-                    height: 170,
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(0),
-                      //color: bGreen,
-                    ),
-                    child: Column(
-                      children: [
-                        textfield(),
-                        dropdownbutton(),
-                        button_search(),
-                      ],
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (BuildContext context) => SettingPage()),
+                        );
+                      },
                     ),
                   ),
-                ),
-              ],
+                  Positioned(
+                    top: 30,
+                    left: 10,
+                    child: IconButton(
+                      icon: Icon(
+                        Icons.arrow_back_ios,
+                        size: 22,
+                        color: cBackground,
+                      ),
+                      onPressed: () {
+                        Navigator.pop(context);
+                        //Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => FirstPage()),);
+                      },
+                    ),
+                  ),
+                  Padding(
+                    padding:
+                        const EdgeInsets.only(left: 16.0, right: 16, top: 16),
+                    child: Container(
+                      margin: new EdgeInsets.only(top: 60),
+                      height: 170,
+                      decoration: BoxDecoration(
+                        borderRadius: BorderRadius.circular(0),
+                        //color: bGreen,
+                      ),
+                      child: Column(
+                        children: [
+                          textfield(),
+                          dropdownbutton(),
+                          button_search(),
+                        ],
+                      ),
+                    ),
+                  ),
+                ],
+              ),
             ),
-          ),
-          SizedBox(
-            height: MediaQuery.of(context).size.height - 250,
-            width: MediaQuery.of(context).size.width,
-            child: Container(
-                decoration: BoxDecoration(
-                  color: cBackground,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(30),
-                    topRight: Radius.circular(30),
-                  ),
-                ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(left:20,top: 20,bottom: 10),
-                      child: Text(dropdownvalue,
-                        style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: cFont),),
+            SizedBox(
+              height: MediaQuery.of(context).size.height - 250,
+              width: MediaQuery.of(context).size.width,
+              child: Container(
+                  decoration: BoxDecoration(
+                    color: cBackground,
+                    borderRadius: BorderRadius.only(
+                      topLeft: Radius.circular(30),
+                      topRight: Radius.circular(30),
                     ),
-                    RegulationTitleList(),
-                  ],
-                )),
-          ),
-        ],
+                  ),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Padding(
+                        padding: const EdgeInsets.only(left:20,top: 20,bottom: 10),
+                        child: Text(dropdownvalue,
+                          style: TextStyle(fontWeight: FontWeight.bold,fontSize: 20,color: cFont),),
+                      ),
+                      Padding(
+                        padding: const EdgeInsets.only(left:18.0,bottom: 6),
+                        child: Text('Temel Kanun ve Yönetmelikler Listesi;',style: TextStyle(color: cFontLight,fontSize: 12),),
+                      ),
+                      RegulationTitleList(),
+                    ],
+                  )),
+            ),
+          ],
+        ),
       ),
     );
   }
@@ -193,7 +200,7 @@ class _SearchingPageState extends State<SearchingPage> {
             borderRadius: BorderRadius.circular(30),
           )),
       onChanged: (value) {
-        // do something
+        kelime = value.toString();
       },
     );
   }
@@ -211,8 +218,13 @@ class _SearchingPageState extends State<SearchingPage> {
                   style: TextStyle(fontSize: 20),
                 ),
                 onPressed: () {
-                  print("ilhan");
                   setState(() {});
+
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(builder: (context) => ResultPage(kelime,dropdownvalue)),
+                  );
+
                 },
                 style: ButtonStyle(
                     backgroundColor: MaterialStateProperty.all<Color>(bGreen),

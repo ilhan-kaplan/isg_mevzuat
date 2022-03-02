@@ -12,3 +12,5 @@ const Color bRed = Color(0XFFF8525C);
 const Color bGreen = Color(0XFF4D996D);
 const Color bPurple = Color(0XFF6E8AF9);
 const Color bOrange = Color(0XFFE8A348);
+const Color bBlue = Color(0XFF00BDFF);
+const Color bYellow = Color(0XFFE2DC69);

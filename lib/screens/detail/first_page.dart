@@ -9,16 +9,16 @@ class FirstPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: cPrimary,
-      body: SingleChildScrollView(
-        child: Column(
-          mainAxisSize: MainAxisSize.min,
-          children: [
-             CostumAppBar(),
-             SizedBox(height: 0,),
-             LegislationImages(),
+      body: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+           CostumAppBar(),
+           SizedBox(height: 0,),
+           LegislationImages(),
 
-          ],
-        ),
+
+
+        ],
       ),
     );
   }

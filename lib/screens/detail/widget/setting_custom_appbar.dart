@@ -6,6 +6,10 @@ import '../setting_page.dart';
 
 class SettingCustomBar extends StatelessWidget {
 
+   String baslik;
+   String ayar;
+   SettingCustomBar(this.baslik,this.ayar);
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -33,7 +37,12 @@ class SettingCustomBar extends StatelessWidget {
             child: IconButton(
               icon: const Icon(Icons.settings,size: 24,color: cBackground,),
               onPressed: () {
-                //Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => SettingPage()),);
+                if(ayar == 'ayar'){
+
+                }else{
+                  Navigator.push(context, MaterialPageRoute(builder: (BuildContext context) => SettingPage()),);
+                }
+
               },
             ),
           ),
@@ -56,7 +65,7 @@ class SettingCustomBar extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text('Ayarlar',
+                  Text(baslik,
                     style: TextStyle(fontWeight: FontWeight.bold,fontSize: 26,color: cBackground),),
                 ],
               ),

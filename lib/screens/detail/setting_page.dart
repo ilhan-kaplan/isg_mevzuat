@@ -19,7 +19,7 @@ class _SettingPageState extends State<SettingPage> {
       body: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          SettingCustomBar(),
+          SettingCustomBar('Ayarlar','ayar'),
           SizedBox(height: 0,),
           SettingContent(),
         ],
