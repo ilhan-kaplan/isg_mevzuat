@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:isg_mevzuat/constants/colors.dart';
 import 'package:isg_mevzuat/screens/detail/searching_page.dart';
-
+@immutable
 class LegislationImages extends StatelessWidget {
   String choosing = "all";
 
@@ -20,36 +20,17 @@ class LegislationImages extends StatelessWidget {
                 topRight: Radius.circular(30),
               ),
             ),
-            child: Column(
-              children: [
-                _buildLegs(),
-                Row(
-                  children: [
-                    Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(8.0),
-                        child: ElevatedButton(
-                          child: Text('Tüm Mevzuatta Ara',style: TextStyle(fontSize: 28),),
-                          onPressed: () {
-                            Navigator.push(context, MaterialPageRoute(builder: (context) => SearchingPage('bütün mevzuat')),);
-                          },
-                          style: ButtonStyle(
-                              backgroundColor: MaterialStateProperty.all<Color>(cPrimaryDark),
-                              padding: MaterialStateProperty.all<EdgeInsets>(EdgeInsets.only(top:10,bottom: 10,left: 30,right: 30)),
-                              shape: MaterialStateProperty.all<RoundedRectangleBorder>(
-                                  RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(24.0),
-                                  )
-                              )
-                          ),
-                        ),
-                      ),
-                    ),
-                  ],
-                  
+            child: Padding(
+              padding: const EdgeInsets.all(8.0),
+              child: SingleChildScrollView(
+                child: Container(
+                  child: Column(
+                    children: [
+                      _buildLegs(),
+                    ],
+                  ),
                 ),
-                SizedBox(height: 30,),
-              ],
+              ),
             ),
           ),
         ),
@@ -58,38 +39,39 @@ class LegislationImages extends StatelessWidget {
   }
 
   Widget _buildLegs() {
-    return SingleChildScrollView(
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.only(left: 20.0, top: 20.0),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Text(
-                  'Mevzuat İçeriği',
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Padding(
+          padding: const EdgeInsets.only(left: 20.0, top: 20.0),
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text(
+                'Mevzuat İçeriği',
+                style: TextStyle(
+                    fontSize: 20, fontWeight: FontWeight.bold, color: cFont),
+              ),
+              SizedBox(
+                height: 10,
+              ),
+              Text(
+                  'Mevzuat içerisinde kelime arayarak ilgili maddeye kolayca ulaşabilirsiniz...',
                   style: TextStyle(
-                      fontSize: 20, fontWeight: FontWeight.bold, color: cFont),
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Text(
-                    'Mevzuat içerisinde kelime arayarak ilgili maddeye kolayca ulaşabilirsiniz...',
-                    style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: cFontLight)),
-              ],
-            ),
+                      fontSize: 12,
+                      fontWeight: FontWeight.bold,
+                      color: cFontLight)),
+            ],
           ),
-          SizedBox(
-            height: 10,
-          ),
-          _legsImages(),
-        ],
-      ),
+        ),
+        SizedBox(
+          height: 10,
+        ),
+        _legsImages(),
+        SizedBox(
+          height: 30,
+        ),
+      ],
     );
   }
 
@@ -137,18 +119,35 @@ class LegislationImages extends StatelessWidget {
             children: [
               Expanded(
                 child: legislation_extract(bOrange, 'assets/images/makine_icon.png',
-                    'Makine Yönetmeliği', 'makine'),
+                    'Makine Yönetmelikleri', 'makine'),
               ),
               SizedBox(width: 12,),
               Expanded(
                 child: legislation_extract(bRed, 'assets/images/bykhy_icon.png',
-                    'Binaların Yangından K.H.Y.', 'yangin'),
+                    'Binaların Yangından K.H.Y.', 'bykhy'),
               ),
             ],
           ),
         ),
         SizedBox(
           height: 20,
+        ),
+        Padding(
+          padding: EdgeInsets.only(left: 10, right: 10),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              Expanded(
+                child: legislation_extract(bBlue, 'assets/images/elektrik_icon.png',
+                    'Elektrik Yönetmelikleri', 'elektrik'),
+              ),
+              SizedBox(width: 12,),
+              Expanded(
+                child: legislation_extract(bYellow, 'assets/images/all_icon.png',
+                    'Bütün Mevzuat', 'all'),
+              ),
+            ],
+          ),
         ),
       ],
     );
@@ -161,6 +160,7 @@ class legislation_extract extends StatelessWidget {
   String baslik;
   String chosing;
 
+  @immutable
   legislation_extract(this.colour, this.resim, this.baslik, this.chosing);
 
   @override

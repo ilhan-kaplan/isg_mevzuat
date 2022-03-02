@@ -22,15 +22,23 @@ class RegulationTitleList extends StatelessWidget {
     return ListView.builder(
       itemCount: RegulationTitles.generateRegulationTitles().length,
         itemBuilder: (context,index) {
-          return Card(
-            child: ListTile(
-              title: Text(RegulationTitles.generateRegulationTitles()[index].title),
-              subtitle: Text(RegulationTitles.generateRegulationTitles()[index].suntitle),
-            ),
-            elevation: 2,
-            shape:  OutlineInputBorder(
-                borderRadius: BorderRadius.circular(10),
-                borderSide: BorderSide(color: cFontLight, width: 1)
+          return GestureDetector(
+            onTap: (){
+              /*Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => ResultPage(RegulationTitles.generateRegulationTitles()[index])),
+              );*/
+            },
+            child: Card(
+              child: ListTile(
+                title: Text(RegulationTitles.generateRegulationTitles()[index].title,style: TextStyle(fontSize: 14,color: cFont),),
+                subtitle: Text(RegulationTitles.generateRegulationTitles()[index].suntitle),
+              ),
+              elevation: 2,
+              shape:  OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(10),
+                  borderSide: BorderSide(color: cFontLight, width: 1)
+              ),
             ),
           );
         });

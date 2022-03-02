@@ -1,5 +1,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.sunbilisim.isg_mevzuat">
+
    <application
         android:label="İSG Mevzuat"
         android:name="${applicationName}"
