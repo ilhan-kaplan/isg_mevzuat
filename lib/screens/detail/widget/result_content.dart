@@ -15,6 +15,7 @@ class ResultContent extends StatefulWidget {
   String kelime;
   String dropdownvalue;
 
+
   ResultContent(this.kelime, this.dropdownvalue);
 
   @override
@@ -22,10 +23,14 @@ class ResultContent extends StatefulWidget {
 }
 
 class _ResultContentState extends State<ResultContent> {
-
+  late List<MaddeDetay> madde_detay_save;
+  Color clrBlk = Colors.black;
+  Color clrGrn = Colors.lightGreen;
+  String follow = 'black';
 
   @override
   Widget build(BuildContext context) {
+
 
 
     return Column(
@@ -136,8 +141,7 @@ class _ResultContentState extends State<ResultContent> {
                                                     String alt_baslik = madde.alt_baslik.replaceAll('<span style="color:#DC143C;"><b>${widget.kelime}</b></span>', '${widget.kelime}').toString();
                                                     String maddem = madde.madde.replaceAll('<span style="color:#DC143C;"><b>${widget.kelime}</b></span>', '${widget.kelime}').toString();
 
-                                                    String General = kanun_baslik.trim()+'\n'+genel_baslik.trim()+'\n'+alt_baslik.trim()+'\n'+maddem.trim();
-                                                    final pdfFile = await PdfApi.generateCenteredText(widget.kelime,General);
+                                                    final pdfFile = await PdfApi.generateCenteredText(widget.kelime,kanun_baslik.trim(),genel_baslik.trim(),alt_baslik.trim(),maddem.trim());
                                                     PdfApi.openFile(pdfFile);
                                                   },
                                                   child: Icon(
@@ -164,14 +168,26 @@ class _ResultContentState extends State<ResultContent> {
                                                 SizedBox(
                                                   width: 14,
                                                 ),
-                                                GestureDetector(
+                                               /* GestureDetector(
                                                   onTap: () {
+                                                    //madde_detay_save.add(madde);
+                                                    setState(() {
+                                                     /* if(clrBlk == Colors.black){
+                                                        print('black');
+                                                        this.clrBlk = Colors.green;
+                                                      }else{
+                                                        this.clrBlk = Colors.black;
+                                                        print('Green');
+                                                      }*/
+
+                                                    });
 
                                                   },
                                                   child: Icon(
                                                     Icons.save_alt_sharp,
+                                                    color: clrBlk,
                                                   ),
-                                                ),
+                                                ),*/
                                               ],
                                             ),
                                           ),

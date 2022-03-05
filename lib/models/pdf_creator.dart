@@ -1,7 +1,9 @@
 
 import 'dart:io';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:isg_mevzuat/constants/colors.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
 import 'package:pdf/pdf.dart';
@@ -9,29 +11,57 @@ import 'package:pdf/widgets.dart' as pw;
 
 class PdfApi {
 
-  static Future<File> generateCenteredText(String kelime,String madde) async {
+  static Future<File> generateCenteredText(String kelime,String kanun_baslik,String genel_baslik,String alt_baslik, String madde) async {
     // making a pdf document to store a text and it is provided by pdf pakage
     final pdf = pw.Document();
-    String mm= madde.trim();
     // Text is added here in center
     pdf.addPage(
       pw.MultiPage(
           theme: pw.ThemeData.withFont(
-            base: pw.Font.ttf(
+            bold: pw.Font.ttf(
               await rootBundle.load(
-                "assets/fonts/OpenSans-Regular.ttf",
+                "assets/fonts/OpenSans-Bold.ttf",
               ),
             ),
-            bold: pw.Font.ttf(
+            base: pw.Font.ttf(
               await rootBundle.load(
                 "assets/fonts/OpenSans-Regular.ttf",
               ),
             ),
           ),
         build: (context) => <pw.Widget>[
-          pw.Header(child: pw.Text('İSG Mevzuat Uygulaması')),
-          pw.Paragraph(text: mm.trim()),
-        ]
+          pw.Row(
+            children: [
+
+            ]
+          ),
+          pw.Header(
+            padding: pw.EdgeInsets.all(8),
+              decoration: pw.BoxDecoration(color:PdfColors.green),
+              child: pw.Row(
+                mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+                children: [
+                  pw.Text('İSG Mevzuat Uygulaması',style: pw.TextStyle(fontWeight: pw.FontWeight.bold,fontSize: 16)),
+                  pw.Text('Aranan Kelime: ${kelime}',style: pw.TextStyle(fontWeight: pw.FontWeight.bold,fontSize: 16)),
+                ]
+              )
+          ),
+          pw.Text(kanun_baslik.trim(),style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
+          pw.Text(genel_baslik.trim(),style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
+          pw.Text(alt_baslik.trim(),style: pw.TextStyle(fontWeight: pw.FontWeight.bold)),
+          pw.Paragraph(text: madde.trim()),
+        ],
+        footer: (context) {
+            final text = 'Sayfa ${context.pageNumber} / ${context.pagesCount}';
+            return pw.Row(
+              mainAxisAlignment: pw.MainAxisAlignment.spaceBetween,
+              children: [
+                pw.Text('İSG Mevzuat Uygulaması',style: pw.TextStyle(color: PdfColors.black,fontWeight: pw.FontWeight.bold)),
+                pw.Text(text,style: pw.TextStyle(color: PdfColors.black,fontWeight: pw.FontWeight.bold)),
+              ]
+            );
+
+        },
 
       )
     );
